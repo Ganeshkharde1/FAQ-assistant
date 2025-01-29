@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <div class="button-container">
+            <a href="{{ url_for('edit_file') }}" class="button">Edit Log</a>
+            <a href="{{ url_for('showdata') }}" class="button">View Log</a>
+        </div>
+        <a href="{{ url_for('index') }}" class="back-button">Back</a>
+
+    </div>
+</body>
+</html>

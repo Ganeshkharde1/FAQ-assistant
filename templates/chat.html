@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gemini Chatbot</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f0f0f0; /* Light gray background */
+            color: #333; /* Dark gray text color for better contrast */
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #3498db; /* Blue heading */
+        }
+
+        #chat-container {
+            flex: 1;
+            overflow-y: scroll;
+            padding: 20px;
+        }
+
+        #chat-history {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .chat-message {
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex; /* Use flexbox for alignment */
+            max-width: 80%; /* Prevent messages from taking up full width */
+        }
+
+        .user-message {
+            justify-content: flex-end; /* Align user messages to the right */
+            background-color: #FFE6C9; /* Light green for user */
+            color: #333;
+            margin-left: 20%; /* Add some margin to the left */
+        }
+
+        .bot-message {
+            justify-content: flex-start; /* Align bot messages to the left */
+            background-color: #FCC6FF; /* Light gray for bot */
+            color: #333;
+            margin-right: 20%; /* Add some margin to the right */
+        }
+
+        #chat-form {
+            display: flex;
+            justify-content: center; /* Center the form */
+            margin-top: 20px; /* Add some top margin */
+            width: 60%; /* Set a width for the form */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px; /* Add some margin to the right of input */
+        }
+
+        #chat-form button {
+            background-color: #3498db; /* Blue button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Intelligent FAQ Assistant</h1>
+    <div id="chat-container">
+        <ul id="chat-history"></ul>
+    </div>
+    <form id="chat-form">
+        <input type="text" id="user-input" placeholder="Enter your message">
+        <button type="submit">Send</button>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#chat-form').submit(function(event) {
+                event.preventDefault();
+                const userInput = $('#user-input').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/chat',
+                    data: { user_input: userInput },
+                    success: function(response) {
+                        const chatHistory = $('#chat-history');
+                        chatHistory.append(`<li class="chat-message user-message"><b>You:</b> ${userInput}</li>`);
+                        chatHistory.append(`<li class="chat-message bot-message"><b>Bot:</b> ${response.response}</li>`);
+                        $('#user-input').val('');
+                        chatHistory.scrollTop(chatHistory[0].scrollHeight);
+                    },
+                    error: function(error) {
+                        console.error("Error:", error);
+                        alert("An error occurred. Please check the console.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

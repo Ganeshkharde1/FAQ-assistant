@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase Data</title>
+</head>
+<body>
+    <h1>Firebase Data</h1>
+
+    {% if data and data.error %}
+        <p style="color: red;">Error: {{ data.error }}</p>
+    {% elif data %}
+        <pre>{{ data|tojson(indent=4) }}</pre>  {% else %}
+        <p>No data found.</p>
+    {% endif %}
+
+</body>
+</html>
