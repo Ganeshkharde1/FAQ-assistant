@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome</h1>
+        <h3>LLM based Intelligent Assistant (Task for Polynomial.ai)</h3>
+        <div class="button-container">
+            <a href="{{ url_for('user_login') }}" class="button">User Login</a>
+            <a href="{{ url_for('admin_login') }}" class="button">Admin Login</a>
+        </div>
+    </div>
+</body>
+</html>
