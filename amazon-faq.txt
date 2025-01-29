@@ -1,0 +1,422 @@
+Q: What is Amazon Elastic Compute Cloud (Amazon EC2)?
+
+
+
+Amazon EC2 is a web service that provides resizable compute capacity in the cloud. It is designed to make web-scale computing easier for developers.
+
+
+
+Q: What can I do with Amazon EC2?
+
+
+
+Just as Amazon Simple Storage Service (Amazon S3) enables storage in the cloud, Amazon EC2 enables “compute” in the cloud.  The Amazon EC2 simple web service interface allows you to obtain and configure capacity with minimal friction. It provides you with complete control of your computing resources and lets you run on Amazon’s proven computing environment. Amazon EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change. Amazon EC2 changes the economics of computing by allowing you to pay only for capacity that you actually use.
+
+
+
+Q: How can I get started with Amazon EC2? 
+
+
+
+To sign up for Amazon EC2, select the “Sign up for This Web Service” button on the Amazon EC2 detail page. You must have an AWS account to access this service; if you do not already have one, you will be prompted to create one when you begin the Amazon EC2 signup process. After signing up, please refer to the Amazon EC2 documentation, which includes our Getting Started Guide.
+
+
+
+Q: Why am I asked to verify my phone number when signing up for Amazon EC2?
+
+
+
+Amazon EC2 registration requires you to have a valid phone number and email address on file with AWS in case we ever need to contact you. Verifying your phone number takes only a couple of minutes and involves receiving a phone call during the registration process and entering a PIN using the phone key pad.
+
+
+
+Q: What can developers now do that they could not before?
+
+
+
+Until now, small developers did not have the capital to acquire massive compute resources and ensure they had the capacity they needed to handle unexpected spikes in load. Amazon EC2 helps developers use Amazon’s own benefits of massive scale with no upfront investment or performance compromises. Developers are now free to innovate knowing that no matter how successful their businesses become, it will be inexpensive and simple to ensure they have the compute capacity they need to meet their business requirements.
+
+
+
+The “Elastic” nature of the service allows developers to instantly scale to meet spikes in traffic or demand. When computing requirements unexpectedly change (up or down), Amazon EC2 can instantly respond, meaning that developers have the ability to control how many resources are in use at any given point in time. In contrast, traditional hosting services generally provide a fixed number of resources for a fixed amount of time, meaning that users have a limited ability to easily respond when their usage is rapidly changing, unpredictable, or is known to experience large peaks at various intervals.
+
+
+
+Q: How do I run systems in the Amazon EC2 environment?
+
+
+
+Once you have set up your account and select or create your AMIs, you are ready to boot your instance. You can start your AMI on any number of On-Demand instances by using the RunInstances API call. You simply need to indicate how many instances you wish to launch. If you wish to run more than your On-Demand quota, complete the Amazon EC2 instance request form.
+
+
+
+If Amazon EC2 is able to fulfill your request, RunInstances will return success, and we will start launching your instances. You can check on the status of your instances using the DescribeInstances API call. You can also programmatically terminate any number of your instances using the TerminateInstances API call.
+
+
+
+If you have a running instance using an Amazon EBS boot partition, you can also use the StopInstances API call to release the compute resources but preserve the data on the boot partition. You can use the StartInstances API when you are ready to restart the associated instance with the Amazon EBS boot partition.
+
+
+
+In addition, you have the option to use Spot Instances to reduce your computing costs when you have flexibility in when your applications can run. Read more about Spot Instances for a more detailed explanation on how Spot Instances work.
+
+
+
+If you prefer, you can also perform all these actions from the AWS Management Console or through the command line using our command line tools, which have been implemented with this web service API.
+
+
+
+Q: What is the difference between using the local instance store and Amazon Elastic Block Store (Amazon EBS) for the root device?
+
+
+
+When you launch your Amazon EC2 instances you have the ability to store your root device data on Amazon EBS or the local instance store. By using Amazon EBS, data on the root device will persist independently from the lifetime of the instance. This enables you to stop and restart the instance at a subsequent time, which is similar to shutting down your laptop and restarting it when you need it again.
+
+
+
+Alternatively, the local instance store only persists during the life of the instance. This is an inexpensive way to launch instances where data is not stored to the root device. For example, some customers use this option to run large web sites where each instance is a clone to handle web traffic.
+
+
+
+Q: How quickly will systems be running?
+
+
+
+It typically takes less than 10 minutes from the issue of the RunInstances call to the point where all requested instances begin their boot sequences. This time depends on a number of factors including: the size of your AMI, the number of instances you are launching, and how recently you have launched that AMI. Images launched for the first time may take slightly longer to boot.  
+
+
+
+Q: How do I load and store my systems with Amazon EC2?
+
+
+
+Amazon EC2 allows you to set up and configure everything about your instances from your operating system up to your applications. An Amazon Machine Image (AMI) is simply a packaged-up environment that includes all the necessary bits to set up and boot your instance. Your AMIs are your unit of deployment. You might have just one AMI or you might compose your system out of several building block AMIs (e.g., webservers, appservers, and databases). Amazon EC2 provides a number of tools to make creating an AMI easy. Once you create a custom AMI, you will need to bundle it. If you are bundling an image with a root device backed by Amazon EBS, you can simply use the bundle command in the AWS Management Console. If you are bundling an image with a boot partition on the instance store, then you will need to use the AMI Tools to upload it to Amazon S3. Amazon EC2 uses Amazon EBS and Amazon S3 to provide reliable, scalable storage of your AMIs so that we can boot them when you ask us to do so.
+
+
+
+Or, if you want, you don’t have to set up your own AMI from scratch. You can choose from a number of globally available AMIs that provide useful instances. For example, if you just want a simple Linux server, you can choose one of the standard Linux distribution AMIs.
+
+
+
+Q: How do I access my systems?
+
+
+
+The RunInstances call that initiates execution of your application stack will return a set of DNS names, one for each system that is being booted. This name can be used to access the system exactly as you would if it were in your own data center. You own that machine while your operating system stack is executing on it.
+
+
+
+Q: Is Amazon EC2 used in conjunction with Amazon S3?
+
+
+
+Yes, Amazon EC2 is used jointly with Amazon S3 for instances with root devices backed by local instance storage. By using Amazon S3, developers have access to the same highly scalable, reliable, fast, inexpensive data storage infrastructure that Amazon uses to run its own global network of web sites. In order to execute systems in the Amazon EC2 environment, developers use the tools provided to load their AMIs into Amazon S3 and to move them between Amazon S3 and Amazon EC2. See How do I load and store my systems with Amazon EC2? for more information about AMIs.
+
+
+
+We expect developers to find the combination of Amazon EC2 and Amazon S3 to be very useful. Amazon EC2 provides cheap, scalable compute in the cloud while Amazon S3 allows users to store their data reliably.
+
+
+
+Q: How many instances can I run in Amazon EC2?
+
+
+
+You are limited to running On-Demand Instances per your vCPU-based On-Demand Instance limit, purchasing 20 Reserved Instances, and requesting Spot Instances per your dynamic Spot limit per region. New AWS accounts may start with limits that are lower than the limits described here.
+
+
+
+If you need more instances, complete the Amazon EC2 limit increase request form with your use case, and your limit increase will be considered. Limit increases are tied to the region they were requested for.
+
+
+
+Q: Are there any limitations in sending email from Amazon EC2 instances?
+
+
+
+Yes. In order to maintain the quality of Amazon EC2 addresses for sending email, we enforce default limits on the amount of email that can be sent from EC2 accounts. If you wish to send larger amounts of email from EC2, you can apply to have these limits removed from your account by filling out this form.
+
+
+
+Q: How quickly can I scale my capacity both up and down?
+
+
+
+Amazon EC2 provides a truly elastic computing environment. Amazon EC2 enables you to increase or decrease capacity within minutes, not hours or days. You can commission one, hundreds or even thousands of server instances simultaneously. When you need more instances, you simply call RunInstances, and Amazon EC2 will typically set up your new instances in a matter of minutes. Of course, because this is all controlled with web service APIs, your application can automatically scale itself up and down depending on its needs.
+
+
+
+Q: What operating system environments are supported?
+
+
+
+Amazon EC2 currently supports a variety of operating systems including: Amazon Linux, Ubuntu, Windows Server, Red Hat Enterprise Linux, SUSE Linux Enterprise Server, openSUSE Leap, Fedora, Fedora CoreOS, Debian, CentOS, Gentoo Linux, Oracle Linux, and FreeBSD. We are looking for ways to expand it to other platforms.
+
+
+
+Q: Does Amazon EC2 use ECC memory?
+
+
+
+In our experience, ECC memory is necessary for server infrastructure, and all the hardware underlying Amazon EC2 uses ECC memory.
+
+
+
+Q: How is this service different than a plain hosting service?
+
+
+
+Traditional hosting services generally provide a pre-configured resource for a fixed amount of time and at a predetermined cost. Amazon EC2 differs fundamentally in the flexibility, control and significant cost savings it offers developers, allowing them to treat Amazon EC2 as their own personal data center with the benefit of Amazon.com’s robust infrastructure.
+
+
+
+When computing requirements unexpectedly change (up or down), Amazon EC2 can instantly respond, meaning that developers have the ability to control how many resources are in use at any given point in time. In contrast, traditional hosting services generally provide a fixed number of resources for a fixed amount of time, meaning that users have a limited ability to easily respond when their usage is rapidly changing, unpredictable, or is known to experience large peaks at various intervals.
+
+
+
+Secondly, many hosting services don’t provide full control over the compute resources being provided. Using Amazon EC2, developers can choose not only to initiate or shut down instances at any time, they can completely customize the configuration of their instances to suit their needs – and change it at any time. Most hosting services cater more towards groups of users with similar system requirements, and so offer limited ability to change these.
+
+
+
+Finally, with Amazon EC2 developers enjoy the benefit of paying only for their actual resource consumption – and at very low rates. Most hosting services require users to pay a fixed, upfront fee irrespective of their actual computing power used, and so users risk overbuying resources to compensate for the inability to quickly scale up resources within a short time frame. 
+
+
+
+EC2 On-Demand Instance limits
+
+Q: What is changing?
+
+
+
+Amazon EC2 is transitioning On-Demand Instance limits from the current instance count-based limits to the new vCPU-based limits to simplify the limit management experience for AWS customers. Usage toward the vCPU-based limit is measured in terms of number of vCPUs (virtual central processing units) for the Amazon EC2 Instance Types to launch any combination of instance types that meet your application needs.
+
+
+
+Q: Are these On-Demand Instance vCPU-based limits regional?
+
+
+
+Yes, the On-Demand Instance limits for an AWS account are set on a per-region basis.
+
+
+
+Q: Will these limits change over time?
+
+
+
+Yes, limits can change over time. Amazon EC2 is constantly monitoring your usage within each region and your limits are raised automatically based on your use of EC2.
+
+
+
+Q: How can I request a limit increase?
+
+
+
+Even though EC2 automatically increases your On-Demand Instance limits based on your usage, if needed you can request a limit increase from the Limits Page on Amazon EC2 console, the Amazon EC2 service page on the Service Quotas console, or the Service Quotas API/CLI.
+
+
+
+Q: How can I calculate my new vCPU limit?
+
+
+
+You can find the vCPU mapping for each of the Amazon EC2 Instance Types or use the simplified vCPU Calculator to compute the total vCPU limit requirements for your AWS account.
+
+
+
+Q: Do vCPU limits apply when purchasing Reserved Instances or requesting Spot Instances?
+
+
+
+No, the vCPU-based limits only apply to running On-Demand instances and Spot Instances.
+
+
+
+Q: How can I view my current On-Demand Instance limits?
+
+
+
+You can find your current On-Demand Instance limits on the EC2 Service Limits page in the Amazon EC2 console, or from the Service Quotas console and APIs.
+
+
+
+Q: Will this affect running instances?
+
+
+
+No, opting into vCPU-based limits will not affect any running instances.
+
+
+
+Q: Can I still launch the same number of instances?
+
+
+
+Yes, the vCPU-based instance limits allow you to launch at least the same number of instances as count-based instance limits.
+
+
+
+Q: Will I be able to view instance usage against these limits?
+
+
+
+With the Amazon CloudWatch metrics integration, you can view EC2 usage against limits in the Service Quotas console. Service Quotas also enables customers to use CloudWatch for configuring alarms to warn customers of approaching limits. In addition, you can continue to track and inspect your instance usage in Trusted Advisor and Limit Monitor.
+
+
+
+Q: Will I still be able to use the DescribeAccountAttributes API?
+
+
+
+With the vCPU limits, we no longer have total instance limits governing the usage. Hence the DescribeAccountAttributes API will no longer return the max-instances value. Instead you can now use the Service Quotas APIs to retrieve information about EC2 limits. You can find more information about the Service Quotas APIs in the AWS documentation.
+
+
+
+Q: Will the vCPU limits have an impact on my monthly bill?
+
+
+
+No. EC2 usage is still calculated either by the hour or the second, depending on which AMI you're running and the instance type and size you’ve launched.
+
+
+
+Q: Will vCPU limits be available in all Regions?
+
+
+
+vCPU-based instance limits are available in all commercial AWS Regions.
+
+
+
+Changes to EC2 SMTP endpoint policy
+
+Q: What is changing?
+
+
+
+As of Januaury 7, 2020, Amazon EC2 began rolling out a change to restrict email traffic over port 25 by default to protect customers and other recipients from spam and email abuse. Port 25 is typically used as the default SMTP port to send emails. AWS accounts that have requested and had Port 25 throttles removed in the past will not be impacted by this change.
+
+
+
+Q: I have a valid use case for sending emails to port 25 from EC2. How can I have these port 25 restrictions removed?
+
+
+
+If you have a valid use case for sending emails to port 25 (SMTP) from EC2, please submit a Request to Remove Email Sending Limitations to have these restrictions lifted. You can alternately send emails using a different port, or leverage an existing authenticated email relay service such as Amazon Simple Email Service (Amazon SES).
+
+
+
+
+
+Service level agreement (SLA)
+
+Q: What does your Amazon EC2 Service Level Agreement guarantee?
+
+
+
+Our SLA guarantees a Monthly Uptime Percentage of at least 99.99% for Amazon EC2 and Amazon EBS within a Region.
+
+
+
+Q: How do I know if I qualify for an SLA Service Credit?
+
+
+
+You are eligible for an SLA credit for either Amazon EC2 or Amazon EBS (whichever was Unavailable, or both if both were Unavailable) if the Region that you are operating in has an Monthly Uptime Percentage of less than 99.99% during any monthly billing cycle. For full details on all of the terms and conditions of the SLA, as well as details on how to submit a claim, see the Amazon Compute Service Level Agreement. 
+
+
+
+Instance types
+
+Accelerated Computing instances | Flex instances | Burstable instances | Compute Optimized instances  | HPC Optimized instances | General Purpose instances | High Memory instances | Memory Optimized instances | Previous Generation instances | Storage Optimized instances
+
+
+
+Accelerated Computing instances
+
+Q: What are Accelerated Computing instances?
+
+
+
+The Accelerated Computing instance category includes instance families that use hardware accelerators, or co-processors, to perform some functions, such as floating-point number calculation and graphics processing, more efficiently than is possible in software running on CPUs. Amazon EC2 provides a broad choice of accelerators including GPUs, purpose built AI chips AWS Trainium and AWS Inferentia, FPGAs and more.
+
+
+
+
+
+Q: When should I use GPU-based EC2 instances?
+
+
+
+GPU instances work best for applications with massive parallelism such as generative AI, deep learning, graphics, gaming, and spatial computing. If you have deep learning and AI models that need third-party proprietary libraries or languages, for example NVIDIA CUDA, CUDA Deep Neural Network (cuDNN), or TensorRT libraries, we recommend using the NVIDIA GPU-based instances.
+
+
+
+
+
+Q: When should I use G-series vs P-series of GPU-based EC2 instances?
+
+
+
+Our G-series of instances is well suited for graphics, gaming and spatial computing as well as AI/ML inference and single-node AI/ML training workloads. Our P-series of instances are optimized for AI inference and training of large foundation models.
+
+
+
+
+
+Q. When should I use AWS Trainium and AWS Inferentia powered instances?
+
+
+
+AWS Trainium and AWS Inferentia are purpose built for deep learning and generative AI workloads. You can use these instances for AI training and inference to get high performance while saving up to 50% on training and inference costs over comparable EC2 instances. AWS Neuron SDK supports a diverse set of model architectures on these instances and you can learn more by visiting the Neuron Documentation page.
+
+
+
+
+
+Q: Where do I get NVIDIA drivers, libraries, frameworks, and development tools for P-series and G-series instances?
+
+
+
+There are listings on the AWS Marketplace that offer Amazon Linux AMIs and Windows Server AMIs with the NVIDIA drivers pre-installed. You may also launch 64-bit HVM AMIs and install the drivers yourself. You must visit the NVIDIA driver website and search for the right drivers based on what GPUs are featured in the instance you are using.
+
+
+
+
+
+You also have the option to use NVIDIA AI enterprise which includes NVIDIA development tools, frameworks, and pre-trained models for AI practitioners, and reliable management and orchestration for IT professionals to ensure performance, high availability, and security. 
+
+
+
+Q: What are Amazon EC2 UltraClusters?
+
+
+
+Amazon EC2 UltraClusters can help you scale to thousands of GPUs or purpose-built ML chips, such as AWS Trainium, to get on-demand access to a supercomputer. They democratize access to supercomputing-class performance for machine learning (ML), generative AI, and high-performance computing (HPC) developers through a simple pay-as-you-go usage model without any setup or maintenance costs. For more information, visit the EC2 UltraClusters page. 
+
+
+
+Flex instances
+
+Q: How do Amazon EC2 Flex instances (M7i-flex and C7i-flex) differentiate from comparable instances (M7i and C7i)? When should I use Flex instances over comparable instances?
+
+
+
+Flex instances (M7i-flex and C7i-flex) are lower priced variants of comparable instances (M7i and C7i) and offer 19% better price performance compared to the previous generation of instances (M6i and C6i). Flex instances can be used to run a majority of workloads that benefit from the latest generation performance but do not fully utilize compute resources. These instances are designed to deliver a baseline CPU performance with the ability to scale up to the full CPU performance 95% of the time. Flex instances are ideal for workloads that fit on instance sizes up to 8xlarge (up to 32 vCPUs and up to 128 GB), including web and application servers, databases, virtual desktops, batch processing, microservices, caches, enterprise applications, Apache Kafka, and Elasticsearch. You can use comparable instances (M7i and C7i) for workloads that need the largest instance sizes or high sustained CPU, network, or EBS performance, such as large application servers and databases, highly scalable multiplayer gaming, CPU-based machine learning (ML), video encoding and streaming, batch processing, distributed analytics, high performance computing (HPC), and ad serving.
+
+
+
+Q: What performance do Flex instances provide?
+
+
+
+Flex instances provide reliable CPU resources to deliver a baseline CPU performance of 40%, designed to meet the compute requirements of the majority of workloads. For times when workloads need more performance, Flex instances provide the ability to scale up to 100% CPU for 95% of the time over a 24-hour window.
+
+
+
+Q: What are some other use cases for M7i-flex instances?
+
+
+
+The M7i-flex instances provide a compelling upgrade path for workloads running on T3 larger-sized instances (large to 2xlarge) by offering better price performance, a fixed hourly price that includes baseline CPU and additional CPU usage beyond baseline, and larger instance sizes up to 8xlarge (32vCPUs and 128 GB). M7i-flex instances offer a simplified way to optimize your EC2 usage without CPU credits.
+
