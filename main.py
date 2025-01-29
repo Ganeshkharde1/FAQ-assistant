@@ -63,6 +63,10 @@ def get_gemini_response(user_query, user_vector):  # Use user_vector
     context = text_data.split(".")[most_similar_index]
 
     prompt = f"""
+    You are the expert FAQ Assistant for Amazon EC2, your task is to answer the user queries,
+    Answer the question in as detailed manner as possible from the provided context, make sure to provide all the details, if the answer is not in the provided
+    context then just say, "answer is not available in the context, visit https://aws.amazon.com/ec2/faqs/", dont provide the wrong answer. Dont give too huge answers, so user's can't feel it's too much big answers.\n\n
+    
     Context: {context}\n
     User: {user_query}\nGemini:
     """
