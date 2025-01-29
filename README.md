@@ -53,7 +53,7 @@ This project is a Flask-based Intelligent FAQ Assistant that leverages Large Lan
    ```bash
    firebase_admin.initialize_app(cred, {
     'databaseURL': "# Replace with your database URL"  
-})
+    })
    ```
    
 
