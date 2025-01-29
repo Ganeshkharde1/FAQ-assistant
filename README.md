@@ -29,7 +29,7 @@ This project is a Flask-based Intelligent FAQ Assistant that leverages Large Lan
 ### Steps to Set Up and Run
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/intelligent-faq-assistant.git
+   git clone https://github.com/Ganeshkharde1/FAQ-assistant.git
    cd intelligent-faq-assistant
    ```
 
